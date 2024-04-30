@@ -1,1 +1,21 @@
-#
+# Standard Normal probabilities 
+import scipy.stats as stats
+import pandas as pd
+
+# Define the range of values for which you want to calculate the probabilities
+values = [i / 10.0 for i in range(-39, 40)]  # from -3.9 to 3.9
+
+# Calculate the PDF and CDF for each value in the range
+pdf_values = [stats.norm.pdf(x) for x in values]
+cdf_values = [stats.norm.cdf(x) for x in values]
+
+# Create a DataFrame to hold the table
+stat_table = pd.DataFrame({
+    'Value': values,
+    'PDF': pdf_values,
+    'CDF': cdf_values
+})
+
+# Display the statistical table
+print(stat_table)
+
