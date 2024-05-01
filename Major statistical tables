@@ -138,3 +138,30 @@ chi_square_table.index.name = 'Probability'
 print(chi_square_table)
 
 # F distribution percentage points 
+import numpy as np
+import pandas as pd
+from scipy.stats import f
+
+# Define the numerator and denominator degrees of freedom
+num_degrees_of_freedom = [1, 2, 5, 10, 20]  # Example numerator degrees of freedom
+den_degrees_of_freedom = [1, 2, 5, 10, 20]  # Example denominator degrees of freedom
+
+# Define the range of probabilities for which you want to calculate the F-values
+probabilities = [0.95, 0.90, 0.05, 0.01]  # Example probabilities
+
+# Calculate the F-values for each pair of degrees of freedom and probability
+f_values = {}
+for num_df in num_degrees_of_freedom:
+    for den_df in den_degrees_of_freedom:
+        f_values[(num_df, den_df)] = [f.ppf(p, num_df, den_df) for p in probabilities]
+
+# Create a DataFrame to hold the table
+f_table = pd.DataFrame(f_values, index=probabilities)
+
+# Set the index name
+f_table.index.name = 'Probability'
+
+# Display the statistical table
+print(f_table)
+
+# Poisson distribution probabilities 
