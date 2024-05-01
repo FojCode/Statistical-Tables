@@ -36,3 +36,26 @@ z_table = pd.DataFrame({
 
 # Display the statistical table
 print(z_table)
+
+# T distribution percentage points 
+
+import scipy.stats as stats
+import pandas as pd
+
+# Define the degrees of freedom for the t-distribution
+degrees_of_freedom = 10  # You can change this to your specific degrees of freedom
+
+# Define the range of probabilities for which you want to calculate the t-scores
+probabilities = [i / 100.0 for i in range(1, 100)]  # from 0.01 to 0.99
+
+# Calculate the t-scores for each probability in the range
+t_scores = [stats.t.ppf(p, degrees_of_freedom) for p in probabilities]
+
+# Create a DataFrame to hold the table
+t_table = pd.DataFrame({
+    'Probability': probabilities,
+    'T-Score': t_scores
+})
+
+# Display the statistical table
+print(t_table)
