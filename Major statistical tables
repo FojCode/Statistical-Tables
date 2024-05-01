@@ -19,3 +19,20 @@ stat_table = pd.DataFrame({
 # Display the statistical table
 print(stat_table)
 
+import scipy.stats as stats
+import pandas as pd
+
+# Define the range of probabilities for which you want to calculate the z-scores
+probabilities = [i / 100.0 for i in range(1, 100)]  # from 0.01 to 0.99
+
+# Calculate the z-scores for each probability in the range
+z_scores = [stats.norm.ppf(p) for p in probabilities]
+
+# Create a DataFrame to hold the table
+z_table = pd.DataFrame({
+    'Probability': probabilities,
+    'Z-Score': z_scores
+})
+
+# Display the statistical table
+print(z_table)
