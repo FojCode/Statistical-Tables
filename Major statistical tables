@@ -165,3 +165,27 @@ f_table.index.name = 'Probability'
 print(f_table)
 
 # Poisson distribution probabilities 
+import numpy as np
+import pandas as pd
+from scipy.stats import poisson
+
+# Define the average rate (λ) of events
+lambda_rate = 3  # You can change this to your specific rate
+
+# Define the range of events (k) for which you want to calculate the probabilities
+events = np.arange(0, 20)  # For example, from 0 to 19 events
+
+# Calculate the probabilities for each event in the range
+probabilities = poisson.pmf(events, lambda_rate)
+
+# Create a DataFrame to hold the table
+poisson_table = pd.DataFrame({
+    'Events': events,
+    'Probability': probabilities
+})
+
+# Display the statistical table
+print(poisson_table)
+
+# Binomial distribution probabilities 
+
