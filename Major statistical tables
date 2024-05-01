@@ -213,3 +213,27 @@ binomial_table = pd.DataFrame({
 print(binomial_table)
 
 # Critical values for the grouping of signs test
+from scipy.stats import ksone
+
+def ks_critical_value(n_trials, alpha):
+    return ksone.ppf(1 - alpha/2, n_trials)
+
+# Define the range of trials and significance levels
+trials = range(1, 41)  # Sample sizes from 1 to 40
+alphas = [0.1, 0.05, 0.02, 0.01]  # Significance levels
+
+# Print table headers
+print('{:<6}|{:<6} Level of significance, alpha'.format(' ', ' '))
+print('{:<6}|{:>8} {:>8} {:>8} {:>8}'.format(*['Trials'] + alphas))
+print('-' * 42)
+
+# Print critical values for each n_trials x alpha combination
+for t in trials:
+    print('{:6d}|{:>8.5f} {:>8.5f} {:>8.5f} {:>8.5f}'
+          .format(*[t] + [ks_critical_value(t, a) for a in alphas]))
+    if t % 10 == 0:
+        print()
+
+# Pseudo random values from the uniform distribution 
+
+
