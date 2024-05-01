@@ -114,3 +114,27 @@ chi_table.index.name = 'Probability'
 # Display the statistical table
 print(chi_table)
 
+# Chi square distribution with different percentage points 
+import numpy as np
+import pandas as pd
+from scipy.stats import chi2
+
+# Define the degrees of freedom and probabilities
+degrees_of_freedom = [1, 2, 5, 10, 20]  # Example degrees of freedom
+probabilities = [0.995, 0.99, 0.975, 0.95, 0.9, 0.1, 0.05, 0.025, 0.01, 0.005]  # Example probabilities
+
+# Calculate the Chi-square values for each degree of freedom and probability
+chi_square_values = {}
+for df in degrees_of_freedom:
+    chi_square_values[df] = [chi2.ppf(1 - p, df) for p in probabilities]
+
+# Create a DataFrame to hold the table
+chi_square_table = pd.DataFrame(chi_square_values, index=probabilities)
+
+# Set the index name
+chi_square_table.index.name = 'Probability'
+
+# Display the statistical table
+print(chi_square_table)
+
+# F distribution percentage points 
