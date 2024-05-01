@@ -59,3 +59,34 @@ t_table = pd.DataFrame({
 
 # Display the statistical table
 print(t_table)
+
+import scipy.stats as stats
+import pandas as pd
+
+# Ask for user input for degrees of freedom and range of probabilities
+degrees_of_freedom = int(input("Enter the degrees of freedom: "))
+start_prob = float(input("Enter the start probability (e.g., 0.01 for 1%): "))
+end_prob = float(input("Enter the end probability (e.g., 0.99 for 99%): "))
+step_prob = float(input("Enter the step for probabilities (e.g., 0.01 for 1% increments): "))
+
+# Generate the range of probabilities
+probabilities = [i for i in frange(start_prob, end_prob, step_prob)]
+
+# Calculate the t-scores for each probability in the range
+t_scores = [stats.t.ppf(p, degrees_of_freedom) for p in probabilities]
+
+# Create a DataFrame to hold the table
+t_table = pd.DataFrame({
+    'Probability': probabilities,
+    'T-Score': t_scores
+})
+
+# Display the statistical table
+print(t_table)
+
+# Helper function to generate range with float step
+def frange(start, stop, step):
+    while start < stop:
+        yield round(start, 2)
+        start += step
+
