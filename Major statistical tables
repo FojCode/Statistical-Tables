@@ -189,3 +189,27 @@ print(poisson_table)
 
 # Binomial distribution probabilities 
 
+import numpy as np
+import pandas as pd
+from scipy.stats import binom
+
+# Define the number of trials (n) and the probability of success (p)
+n = 10  # Example number of trials
+p = 0.5  # Example probability of success
+
+# Define the range of successes (k) for which you want to calculate the probabilities
+k_values = np.arange(0, n+1)  # From 0 to n successes
+
+# Calculate the probabilities for each number of successes in the range
+probabilities = [binom.pmf(k, n, p) for k in k_values]
+
+# Create a DataFrame to hold the table
+binomial_table = pd.DataFrame({
+    'Number of Successes': k_values,
+    'Probability': probabilities
+})
+
+# Display the statistical table
+print(binomial_table)
+
+# Critical values for the grouping of signs test
