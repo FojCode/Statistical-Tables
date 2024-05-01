@@ -90,3 +90,27 @@ def frange(start, stop, step):
         yield round(start, 2)
         start += step
 
+# Chi square distribution 
+
+import numpy as np
+import pandas as pd
+from scipy.stats import chi2
+
+# Define the degrees of freedom for the Chi-square distribution
+degrees_of_freedom = [1, 2, 5, 10, 20]  # Example degrees of freedom
+
+# Define the range of probabilities for which you want to calculate the Chi-square values
+probabilities = [0.995, 0.99, 0.975, 0.95, 0.9, 0.1, 0.05, 0.025, 0.01, 0.005]
+
+# Calculate the Chi-square values for each degree of freedom and probability
+chi_values = {df: chi2.isf(probabilities, df) for df in degrees_of_freedom}
+
+# Create a DataFrame to hold the table
+chi_table = pd.DataFrame(chi_values, index=probabilities)
+
+# Set the index name
+chi_table.index.name = 'Probability'
+
+# Display the statistical table
+print(chi_table)
+
